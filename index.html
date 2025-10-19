@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nora Apelgren | Web Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #a8d8ea 0%, #d4e9f7 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(168, 216, 234, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            padding: 5px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo:hover {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #a8d8ea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #7ec8e3;
+        }
+
+        /* Floating Flowers */
+        .flowers-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .flower {
+            position: absolute;
+            animation: float 15s infinite ease-in-out;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-60px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-30px) rotate(3deg);
+            }
+        }
+
+        /* Butterflies */
+        .butterfly {
+            position: absolute;
+            animation: fly 20s infinite ease-in-out;
+            opacity: 0.9;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(200px, -150px) rotate(10deg);
+            }
+            50% {
+                transform: translate(400px, -50px) rotate(-10deg);
+            }
+            75% {
+                transform: translate(200px, -200px) rotate(5deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+        }
+
+        .hero h1 img {
+            max-width: 90%;
+            width: 800px;
+            height: auto;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .hero .subtitle {
+            font-size: 4em;
+            font-family: 'Allura', cursive;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .hero .profession {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 60px;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            font-weight: 500;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: #34495e;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2em;
+            color: white;
+            opacity: 0.7;
+        }
+
+        /* Work Section */
+        .work-section {
+            background: white;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 4em;
+            margin-bottom: 80px;
+            color: #2c3e50;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 100px;
+            margin-bottom: 80px;
+        }
+
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .project:nth-child(even) {
+            direction: rtl;
+        }
+
+        .project:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease;
+        }
+
+        .project-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .project-image-container:hover {
+            transform: scale(1.02);
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #999;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-number {
+            font-size: 1em;
+            color: #a8d8ea;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .project-title {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .project-subtitle {
+            font-size: 1.3em;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .project-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .tag {
+            background: #a8d8ea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(135deg, #a8d8ea 0%, #d4e9f7 100%);
+            padding: 100px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.4em;
+            color: #2c3e50;
+            line-height: 1.9;
+            margin-bottom: 25px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 3.5em;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .contact-content p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .email-link {
+            display: inline-block;
+            background: white;
+            color: #2c3e50;
+            padding: 18px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2em;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .email-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 1em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .project {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .project:nth-child(even) {
+                direction: ltr;
+            }
+
+            .hero h1 {
+                font-size: 4.5em;
+            }
+
+            .hero .subtitle {
+                font-size: 3em;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .hero .subtitle {
+                font-size: 2.5em;
+            }
+
+            .hero .profession {
+                font-size: 1.3em;
+            }
+
+            .section-title {
+                font-size: 2.5em;
+            }
+
+            .project-title {
+                font-size: 2em;
+            }
+
+            .about-content p {
+                font-size: 1.2em;
+            }
+
+            .contact-content h2 {
+                font-size: 2.5em;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9em;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="./images/butterflies/7.png" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Floating Flowers and Butterflies -->
+    <div class="flowers-container" id="floatingElements"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><img src="./images/creative-portfolio.png" alt="Creative Portfolio"></h1>
+            <p class="profession">Nora Apelgren<br>Freelance Designer</p>
+            <a href="#work" class="cta-button">View My Work</a>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="work-section">
+        <div class="container">
+            <h2 class="section-title">Selected Projects</h2>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project">
+                    <div class="project-image-container">
+                        <img src="./images/chris-reis.png" alt="Chris Reis Tennis Website" onerror="this.onerror=null; this.src='./images/chris-reis.jpg';">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">01</div>
+                        <h3 class="project-title">Chris Reis Tennis</h3>
+                        <p class="project-subtitle">Professional Tennis Coaching</p>
+                        <p class="project-description">
+                            A clean, minimal website designed for an ex-professional tennis player turned coach. The design emphasizes clarity and professionalism, with a modern aesthetic that reflects dedication to excellence both on and off the court.
+                        </p>
+                        <p class="project-description">
+                            The site showcases a holistic coaching philosophy, incorporating nutrition, wellness, and mental training alongside technical skills development.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Minimal Design</span>
+                            <span class="tag">Modern</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">Sports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project">
+                    <div class="project-image-container">
+                        <img src="./images/alpenrose.png" alt="The Alpenrose Hotel Website" onerror="this.onerror=null; this.src='./images/alpenrose.jpg';">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">02</div>
+                        <h3 class="project-title">The Alpenrose</h3>
+                        <p class="project-subtitle">Luxury Swiss Alpine Resort</p>
+                        <p class="project-description">
+                            An elegant website for a luxury hotel nestled in the Swiss Alps. The design balances sophistication with simplicity, creating an elevated digital experience that mirrors the tranquility and grandeur of the mountain setting.
+                        </p>
+                        <p class="project-description">
+                            Features include detailed accommodation showcases with interactive floorplans and immersive visual storytelling that evokes alpine serenity.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Luxury</span>
+                            <span class="tag">Minimalist</span>
+                            <span class="tag">Hospitality</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p>
+                    I'm a freelance web designer with a passion for creating clean, modern websites that help businesses thrive online. With a background in data and sustainability, I bring analytical thinking and attention to detail to every design project.
+                </p>
+                <p>
+                    I craft digital experiences that are both beautiful and purposeful, focusing on minimalist aesthetics that let content shine while delivering exceptional user experiences.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-content">
+            <h2>Let's Work Together</h2>
+            <p>
+                Ready to bring your vision to life? I'd love to hear about your project and explore how we can create something beautiful together.
+            </p>
+            <a href="mailto:nora@apelgren.biz" class="email-link">Get In Touch</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Nora Apelgren. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Create floating butterflies
+        const container = document.getElementById('floatingElements');
+        
+        // Local butterfly images (1-10 except 2)
+        const butterflyImages = [
+            './images/butterflies/1.png',
+            './images/butterflies/3.png',
+            './images/butterflies/4.png',
+            './images/butterflies/5.png',
+            './images/butterflies/6.png',
+            './images/butterflies/7.png',
+            './images/butterflies/8.png',
+            './images/butterflies/9.png',
+            './images/butterflies/10.png'
+        ];
+        
+        // Create butterflies (more since we removed flowers)
+        for (let i = 0; i < 18; i++) {
+            const b = document.createElement('div');
+            b.className = 'butterfly';
+            
+            const img = document.createElement('img');
+            img.src = butterflyImages[Math.floor(Math.random() * butterflyImages.length)];
+            img.style.width = (50 + Math.random() * 40) + 'px';
+            img.style.height = 'auto';
+            img.style.filter = 'drop-shadow(3px 3px 8px rgba(0,0,0,0.3))';
+            img.onerror = function() {
+                // Fallback to emoji if image doesn't load
+                this.style.display = 'none';
+                b.textContent = '🦋';
+                b.style.fontSize = '40px';
+            };
+            
+            b.appendChild(img);
+            b.style.left = Math.random() * 100 + '%';
+            b.style.top = Math.random() * 100 + '%';
+            b.style.animationDelay = Math.random() * 5 + 's';
+            b.style.animationDuration = (15 + Math.random() * 10) + 's';
+            container.appendChild(b);
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
